@@ -1,3 +1,35 @@
+<?php
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $bloodgroup = $_POST['bloodgroup'];
+    $location = $_POST['location'];
+    $contact = $_POST['contact'];
+
+    $host = 'localhost';
+    $user = 'root';
+    $pass = '';
+    $dbname = 'mytutor';
+
+    $conn = mysqli_connect($host, $user, $pass, $dbname);
+
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    $stmt = $conn->prepare("INSERT INTO register (name, bloodgroup, location, contact) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $bloodgroup, $location, $contact);
+    
+    if ($stmt->execute()) {
+        echo "Record inserted successfully!";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+    
+    $stmt->close();
+    
+    // Fixed variable name `$blood_group` to `$bloodgroup` and `$contact` properly enclosed
+    
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
