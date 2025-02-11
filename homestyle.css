@@ -100,6 +100,7 @@ footer {
     text-align: center;
     cursor: pointer;
 padding: 20px 40px;
+    text-decoration:none;
 }
 
 .red { background-color: #A61B1B; }  /* Register */
